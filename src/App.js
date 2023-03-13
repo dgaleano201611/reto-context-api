@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { ContextProvider } from './store/Context';
+import TotalVotes from './components/TotalVotes';
+import Candidatos from './components/Candidatos';
+import TypeVotes from './components/TypeVotes';
+
+
 
 function App() {
+
+  const candidatosArr = [
+    "candidato1",
+    "candidato2",
+    "candidato3",
+    "candidato4",
+
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ContextProvider>
+        <header className='App-header'>
+          <TotalVotes />
+          {candidatosArr.map((candidato) => {
+            return (<Candidatos key={candidato}name={candidato} />)
+          })}
+          <TypeVotes />
+        </header>
+      </ContextProvider>
     </div>
   );
 }
